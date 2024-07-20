@@ -1,0 +1,5 @@
+pre-commit:
+  commands:
+    lint:
+      glob: "*.go"
+      run: make lint
