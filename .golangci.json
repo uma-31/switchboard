@@ -1,0 +1,7 @@
+{
+  "$schema": "https://golangci-lint.run/jsonschema/golangci.jsonschema.json",
+  "linters": {
+    "enable-all": true,
+    "disable": ["execinquery", "gomnd"]
+  }
+}
