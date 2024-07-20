@@ -1,0 +1,14 @@
+{
+  "features": {
+    "ghcr.io/devcontainers-contrib/features/lefthook-asdf:1": {
+      "version": "1.0.1",
+      "resolved": "ghcr.io/devcontainers-contrib/features/lefthook-asdf@sha256:49fd188fef31e4fe855730b8b7a1bb7308036cc99b9c211e503bb4d541f3b99b",
+      "integrity": "sha256:49fd188fef31e4fe855730b8b7a1bb7308036cc99b9c211e503bb4d541f3b99b"
+    },
+    "ghcr.io/guiyomh/features/golangci-lint:0": {
+      "version": "0.1.1",
+      "resolved": "ghcr.io/guiyomh/features/golangci-lint@sha256:8ce3daddb8768e324a047dc54a9066e53b681d875f0c130052508724a8805973",
+      "integrity": "sha256:8ce3daddb8768e324a047dc54a9066e53b681d875f0c130052508724a8805973"
+    }
+  }
+}

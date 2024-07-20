@@ -1,0 +1,9 @@
+// ref: https://containers.dev/implementors/json_reference/
+{
+  "name": "Go",
+  "features": {
+    "ghcr.io/devcontainers-contrib/features/lefthook-asdf:1": {},
+    "ghcr.io/guiyomh/features/golangci-lint:0": {}
+  },
+  "image": "mcr.microsoft.com/devcontainers/go:1-1.22-bookworm"
+}
