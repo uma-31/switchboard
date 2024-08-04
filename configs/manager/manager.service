@@ -1,0 +1,10 @@
+[Unit]
+Description=Manager program for the switchboard.
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/switchboard-manager
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

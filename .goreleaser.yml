@@ -1,0 +1,60 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+project_name: switchboard
+
+builds:
+  - id: switchboard-agent
+    main: ./cmd/agent
+    binary: switchboard-agent
+    goos:
+      - linux
+      - windows
+    goarch:
+      - "386"
+      - amd64
+
+  - id: switchboard-manager
+    main: ./cmd/manager
+    binary: switchboard-manager
+    goos:
+      - linux
+      - windows
+    goarch:
+      - "386"
+      - amd64
+
+nfpms:
+  - id: switchboard-agent
+    package_name: switchboard-agent
+    builds:
+      - switchboard-agent
+    maintainer: uMa <ysmst35@gmail.com>
+    description: Agent program for the switchboard.
+    license: MIT
+    formats:
+      - deb
+    bindir: /usr/local/bin
+    contents:
+      - src: ./configs/agent/default-config.yaml
+        dst: /etc/switchboard/agent/config.yaml
+      - src: ./configs/agent/agent.service
+        dst: /etc/systemd/system/switchboard-agent.service
+    scripts:
+      postinstall: ./scripts/agent/postinstall.sh
+
+  - id: switchboard-manager
+    package_name: switchboard-manager
+    builds:
+      - switchboard-manager
+    maintainer: uMa <ysmst35@gmail.com>
+    description: Manager program for the switchboard.
+    license: MIT
+    formats:
+      - deb
+    bindir: /usr/local/bin
+    contents:
+      - src: ./configs/manager/default-config.yaml
+        dst: /etc/switchboard/manager/config.yaml
+      - src: ./configs/manager/manager.service
+        dst: /etc/systemd/system/switchboard-manager.service
+    scripts:
+      postinstall: ./scripts/manager/postinstall.sh

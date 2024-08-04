@@ -1,0 +1,10 @@
+[Unit]
+Description=Agent program for the switchboard.
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/switchboard-agent
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
