@@ -2,6 +2,69 @@
   "$schema": "https://golangci-lint.run/jsonschema/golangci.jsonschema.json",
   "linters": {
     "enable-all": true,
-    "disable": ["execinquery", "gomnd"]
+    "disable": ["execinquery", "gomnd", "gosmopolitan"]
+  },
+  "issues": {
+    "exclude-rules": [
+      {
+        "path": "_test.go",
+        "linters": ["funlen"]
+      }
+    ]
+  },
+  "linters-settings": {
+    "varnamelen": {
+      "ignore-names": ["tt"]
+    },
+    "depguard": {
+      "rules": {
+        "agent-cmd": {
+          "list-mode": "strict",
+          "files": ["!$test", "**/cmd/agent/*.go"],
+          "allow": [
+            "$gostd",
+            "github.com/uma-31/switchboard/agent/infrastructure"
+          ]
+        },
+        "agent-infrastructure": {
+          "list-mode": "strict",
+          "files": ["!$test", "**/agent/infrastructure/**/*.go"],
+          "allow": [
+            "$gostd",
+            "github.com/gin-gonic/gin",
+            "github.com/denisbrodbeck/machineid",
+            "github.com/uma-31/switchboard/agent/infrastructure",
+            "github.com/uma-31/switchboard/agent/interface",
+            "github.com/uma-31/switchboard/agent/domain"
+          ]
+        },
+        "agent-interface": {
+          "list-mode": "strict",
+          "files": ["!$test", "**/agent/interface/**/*.go"],
+          "allow": [
+            "$gostd",
+            "github.com/uma-31/switchboard/agent/interface",
+            "github.com/uma-31/switchboard/agent/domain"
+          ]
+        },
+        "agent-domain": {
+          "list-mode": "strict",
+          "files": ["!$test", "**/agent/domain/**/*.go"],
+          "allow": ["$gostd", "github.com/uma-31/switchboard/agent/domain"]
+        },
+        "default": {
+          "list-mode": "strict",
+          "files": [
+            "$all",
+            "!$test",
+            "!**/cmd/agent/*.go",
+            "!**/agent/infrastructure/**/*.go",
+            "!**/agent/interface/**/*.go",
+            "!**/agent/domain/**/*.go"
+          ],
+          "allow": ["$gostd"]
+        }
+      }
+    }
   }
 }
