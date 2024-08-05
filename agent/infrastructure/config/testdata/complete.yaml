@@ -1,0 +1,4 @@
+computer:
+  id: desktop
+  name: デスクトップ
+port: 11331
