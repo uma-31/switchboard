@@ -5,5 +5,26 @@
     "ghcr.io/devcontainers-contrib/features/lefthook-asdf:1": {},
     "ghcr.io/guiyomh/features/golangci-lint:0": {}
   },
-  "image": "mcr.microsoft.com/devcontainers/go:1-1.22-bookworm"
+  "image": "mcr.microsoft.com/devcontainers/go:1-1.22-bookworm",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "go.lintTool": "golangci-lint",
+        "go.lintFlags": [
+          "--config=${workspaceFolder}/.golangci.json",
+          "--fast"
+        ],
+        "gopls": {
+          // 開発時は、wire で自動生成されたコードは無効化する
+          // ref: https://github.com/google/wire/discussions/283
+          "build.buildFlags": ["-tags=wireinject"],
+          "build.standaloneTags": [
+            "ignore",
+            "wireinject",
+            "!wireinject"
+          ]
+        }
+      }
+    }
+  }
 }
