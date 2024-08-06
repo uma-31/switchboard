@@ -33,6 +33,7 @@
             "$gostd",
             "github.com/gin-gonic/gin",
             "github.com/denisbrodbeck/machineid",
+            "github.com/hashicorp/mdns",
             "github.com/uma-31/switchboard/agent/infrastructure",
             "github.com/uma-31/switchboard/agent/interface",
             "github.com/uma-31/switchboard/agent/domain"
