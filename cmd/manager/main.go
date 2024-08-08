@@ -1,21 +1,27 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
+	"github.com/uma-31/switchboard/manager/infrastructure/config"
+	"github.com/uma-31/switchboard/manager/infrastructure/di/wire"
 )
 
-func hello(writer http.ResponseWriter, req *http.Request) {
-	fmt.Fprint(writer, "Hello, I'm manager!")
-}
-
 func main() {
-	server := http.Server{
-		Addr:    ":8080",
-		Handler: nil,
+	configFilePath, err := config.NewFilePath()
+	if err != nil {
+		panic(err)
 	}
 
-	http.HandleFunc("/hello", hello)
+	conf, err := config.Load(configFilePath)
+	if err != nil {
+		panic(err)
+	}
 
-	server.ListenAndServe()
+	server, err := wire.InitializeGinServer(conf.Port)
+	if err != nil {
+		panic(err)
+	}
+
+	if err := server.Run(); err != nil {
+		panic(err)
+	}
 }
