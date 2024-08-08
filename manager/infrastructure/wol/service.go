@@ -37,6 +37,8 @@ func buildMagicPacket(macAddress string) ([]byte, error) {
 		magicPacketPrefix,
 		magicPacketPrefix,
 		magicPacketPrefix,
+		magicPacketPrefix,
+		magicPacketPrefix,
 	)
 
 	mac, err := net.ParseMAC(macAddress)
