@@ -1,6 +1,8 @@
 package mdns
 
 import (
+	"net"
+
 	"github.com/hashicorp/mdns"
 	"github.com/uma-31/switchboard/agent/domain/valueobject"
 )
@@ -30,13 +32,31 @@ type Server struct {
 
 // Server のインスタンスを生成する。
 func NewServer(computerID valueobject.ComputerID, port int) (*Server, error) {
+	// NOTE: 決め打ちで IP アドレスを取得しているが、MAC アドレスと同様に制御できるようにする。
+	addrs, err := net.InterfaceAddrs()
+	if err != nil {
+		return nil, &ServerInitializeFailedError{err}
+	}
+
+	var ipAddr net.IP
+
+	for _, addr := range addrs {
+		if ipNet, ok := addr.(*net.IPNet); ok && !ipNet.IP.IsLoopback() {
+			if ipv4 := ipNet.IP.To4(); ipv4 != nil {
+				ipAddr = ipv4
+
+				break
+			}
+		}
+	}
+
 	mdnsService, err := mdns.NewMDNSService(
 		computerID.Value(),
 		"_agent._switchboard._tcp",
 		"",
 		"",
 		port,
-		nil,
+		[]net.IP{ipAddr},
 		nil,
 	)
 	if err != nil {
