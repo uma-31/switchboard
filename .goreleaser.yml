@@ -7,20 +7,20 @@ builds:
     binary: switchboard-agent
     goos:
       - linux
-      - windows
     goarch:
       - "386"
       - amd64
+      - arm64
 
   - id: switchboard-manager
     main: ./cmd/manager
     binary: switchboard-manager
     goos:
       - linux
-      - windows
     goarch:
       - "386"
       - amd64
+      - arm64
 
 nfpms:
   - id: switchboard-agent
