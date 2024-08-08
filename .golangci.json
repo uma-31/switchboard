@@ -39,16 +39,16 @@
             "github.com/denisbrodbeck/machineid",
             "github.com/hashicorp/mdns",
             "github.com/uma-31/switchboard/agent/infrastructure",
-            "github.com/uma-31/switchboard/agent/interface",
+            "github.com/uma-31/switchboard/agent/adapter",
             "github.com/uma-31/switchboard/agent/domain"
           ]
         },
-        "agent-interface": {
+        "agent-adapter": {
           "list-mode": "strict",
-          "files": ["!$test", "**/agent/interface/**/*.go"],
+          "files": ["!$test", "**/agent/adapter/**/*.go"],
           "allow": [
             "$gostd",
-            "github.com/uma-31/switchboard/agent/interface",
+            "github.com/uma-31/switchboard/agent/adapter",
             "github.com/uma-31/switchboard/agent/domain"
           ]
         },
@@ -111,7 +111,7 @@
             "!$test",
             "!**/cmd/agent/*.go",
             "!**/agent/infrastructure/**/*.go",
-            "!**/agent/interface/**/*.go",
+            "!**/agent/adapter/**/*.go",
             "!**/agent/domain/**/*.go",
             "!**/cmd/manager/*.go",
             "!**/manager/infrastructure/**/*.go",

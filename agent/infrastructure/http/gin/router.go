@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/uma-31/switchboard/agent/interface/http/controller"
+	"github.com/uma-31/switchboard/agent/adapter/http/controller"
 )
 
 // Gin を使用して提供される HTTP サーバーのルーター。
