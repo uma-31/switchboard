@@ -9,6 +9,10 @@
       {
         "path": "_test.go",
         "linters": ["funlen"]
+      },
+      {
+        "path": "manager/infrastructure/mdns/scan_service.go",
+        "linters": ["gosec", "noctx"]
       }
     ]
   },
@@ -53,6 +57,53 @@
           "files": ["!$test", "**/agent/domain/**/*.go"],
           "allow": ["$gostd", "github.com/uma-31/switchboard/agent/domain"]
         },
+        "manager-cmd": {
+          "list-mode": "strict",
+          "files": ["!$test", "**/cmd/manager/*.go"],
+          "allow": [
+            "$gostd",
+            "github.com/uma-31/switchboard/manager/infrastructure"
+          ]
+        },
+        "manager-infrastructure": {
+          "list-mode": "strict",
+          "files": ["!$test", "**/manager/infrastructure/**/*.go"],
+          "allow": [
+            "$gostd",
+            "github.com/gin-gonic/gin",
+            "github.com/glebarez/sqlite",
+            "github.com/denisbrodbeck/machineid",
+            "github.com/hashicorp/mdns",
+            "github.com/uma-31/switchboard/manager/infrastructure",
+            "github.com/uma-31/switchboard/manager/adapter",
+            "github.com/uma-31/switchboard/manager/application",
+            "github.com/uma-31/switchboard/manager/domain"
+          ]
+        },
+        "manager-adapter": {
+          "list-mode": "strict",
+          "files": ["!$test", "**/manager/adapter/**/*.go"],
+          "allow": [
+            "$gostd",
+            "github.com/uma-31/switchboard/manager/adapter",
+            "github.com/uma-31/switchboard/manager/application",
+            "github.com/uma-31/switchboard/manager/domain"
+          ]
+        },
+        "manager-application": {
+          "list-mode": "strict",
+          "files": ["!$test", "**/manager/application/**/*.go"],
+          "allow": [
+            "$gostd",
+            "github.com/uma-31/switchboard/manager/application",
+            "github.com/uma-31/switchboard/manager/domain"
+          ]
+        },
+        "manager-domain": {
+          "list-mode": "strict",
+          "files": ["!$test", "**/manager/domain/**/*.go"],
+          "allow": ["$gostd", "github.com/uma-31/switchboard/manager/domain"]
+        },
         "default": {
           "list-mode": "strict",
           "files": [
@@ -61,7 +112,12 @@
             "!**/cmd/agent/*.go",
             "!**/agent/infrastructure/**/*.go",
             "!**/agent/interface/**/*.go",
-            "!**/agent/domain/**/*.go"
+            "!**/agent/domain/**/*.go",
+            "!**/cmd/manager/*.go",
+            "!**/manager/infrastructure/**/*.go",
+            "!**/manager/adapter/**/*.go",
+            "!**/manager/application/**/*.go",
+            "!**/manager/domain/**/*.go"
           ],
           "allow": ["$gostd"]
         }
